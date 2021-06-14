@@ -33,6 +33,15 @@ class Router
 		$this->routes[implode("-", $methods)][$path] = $callback;
 	}
 
+	/*
+	|--------------------------------------------------------------------------
+	| resolve
+	|--------------------------------------------------------------------------
+	|
+	| Handle server request. Finding routes and calling callback functions
+	|
+	*/
+
 	public function resolve(){
 		$path = $this->request->getPath();
 		$method = $this->request->getMethod();

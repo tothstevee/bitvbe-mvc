@@ -14,6 +14,15 @@ class Application
 		$this->router = new Router($this->request);
 	}
 
+	/*
+	|--------------------------------------------------------------------------
+	| run
+	|--------------------------------------------------------------------------
+	|
+	| Core function this handle routes and returning response
+	|
+	*/
+
 	public function run(){
 		return $this->router->resolve();
 	}
