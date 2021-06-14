@@ -12,9 +12,27 @@ class View{
 		$this->name = $name;
 	}
 
+	/*
+	|--------------------------------------------------------------------------
+	| setLayout
+	|--------------------------------------------------------------------------
+	|
+	| Set view current layout
+	|
+	*/
+
 	private function setLayout($layout){
 		$this->layout = $layout;
 	}
+
+	/*
+	|--------------------------------------------------------------------------
+	| render
+	|--------------------------------------------------------------------------
+	|
+	| Render the view, import layout and set variables
+	|
+	*/
 
 	public function render(){
 		$content = $this->getViewContent($this->name) ?? false;
@@ -39,19 +57,28 @@ class View{
 		return $content;		
 	}
 
-	private function getViewContent($view_file){
-		$view_file =  Application::$ROOT_DIR.'/app/views/'.$view_file.'.view.php';
+		/*
+		|--------------------------------------------------------------------------
+		| getViewContent
+		|--------------------------------------------------------------------------
+		|
+		| Get the rendered content from view file
+		|
+		*/
 
-		if(file_exists($view_file)){
-			ob_start();
-			foreach ($this->params as $key => $value) {
-				$$key = $value;
+		private function getViewContent($view_file){
+			$view_file =  Application::$ROOT_DIR.'/app/views/'.$view_file.'.view.php';
+
+			if(file_exists($view_file)){
+				ob_start();
+				foreach ($this->params as $key => $value) {
+					$$key = $value;
+				}
+				include_once $view_file;
+				return ob_get_clean();
 			}
-			include_once $view_file;
-			return ob_get_clean();
-		}
 
-		return false;
-	}
+			return false;
+		}
 
 }
