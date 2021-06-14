@@ -1,0 +1,2 @@
+@extend('l')
+Hello <?= $name ?>!
